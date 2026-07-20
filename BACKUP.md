@@ -1,6 +1,6 @@
 # 🗺️ Personal Task Manager: Project Blueprint & Setup Guide
 
-Save this document as `BACKUP_GUIDE.md` in your project folder. This contains your full setup history, configurations, and your complete 1-2 week roadmap for the staff review.
+Save this document as `BACKUP_GUIDE.md` in your project folder. This contains your full setup history, configurations, data models, and your complete 1-2 week roadmap for the staff review.
 
 ---
 
@@ -12,9 +12,9 @@ Save this document as `BACKUP_GUIDE.md` in your project folder. This contains yo
 
 ---
 
-## 🛠️ Phase 1: Environment & Tooling Setup
+## 🛠️ Phase 1: Environment & Tooling Setup (Completed)
 
-### 1.1 Core Configuration Files (Verified Working)
+### 1.1 Core Configuration Files
 
 #### `vite.config.js`
 ```javascript
@@ -72,17 +72,40 @@ function App() {
 export default App;
 ```
 
+### 1.2 Database Initialization & Data Schema
+
+#### `prisma/schema.prisma`
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  dueDate     DateTime
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+```
+
 ---
 
 ## 📋 Comprehensive 1-2 Week Project Roadmap
 
-### Phase 1: Local Development Architecture (Current Phase)
+### Phase 1: Local Development Architecture
 - [x] **1.1:** Complete base folder structure and environment configuration
 - [x] **1.2:** Install and configure Tailwind CSS 
-- [ ] **1.3:** Initialize Prisma and connect your database provider
-- [ ] **1.4:** Define the `Task` database schema and execute the first migration
+- [x] **1.3:** Initialize Prisma and connect your database provider
+- [x] **1.4:** Define the `Task` database schema and execute the first migration
 
-### Phase 2: Core Frontend UI Components
+### Phase 2: Core Frontend UI Components (Current Phase)
 - [ ] **2.1:** Design Dashboard Layout & App Navigation
 - [ ] **2.2:** Build the Task List grid/table view (rendered with clean mock data)
 - [ ] **2.3:** Build the Task Creation & Editing form modal/component
@@ -103,7 +126,7 @@ export default App;
 ---
 
 ## 🔒 Security Warning (Prisma `.env`)
-Before initialization, confirm you have a `.gitignore` file in your root folder containing these lines to prevent committing passwords or databases to GitHub:
+Confirm your `.gitignore` file in your root folder always includes these lines to prevent committing database keys or private passwords to GitHub:
 ```text
 node_modules/
 .env
