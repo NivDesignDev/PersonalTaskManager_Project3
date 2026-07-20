@@ -1,0 +1,37 @@
+# Personal Task Manager - Project Roadmap & Progress
+
+## 🚀 Core Tech Stack
+- **Frontend Framework:** React (Vite)
+- **Styling:** Tailwind CSS
+- **Database ORM:** Prisma + PostgreSQL/MySQL
+- **Testing:** Vitest or Jest
+
+## 🗺️ Project Phases
+
+### Phase 1: Local Development Architecture 🛠️
+- [ ] 1.1: Complete base folder structure and environment configuration
+- [ ] 1.2: Install and configure Tailwind CSS
+- [ ] 1.3: Initialize Prisma and define the Task database schema
+- [ ] 1.4: Run the initial database migration to create the Task table
+
+### Phase 2: Core Frontend UI Components 🎨
+- [ ] 2.1: Design and build the Dashboard Layout & Navigation
+- [ ] 2.2: Create the Task List view component (with mock data)
+- [ ] 2.3: Build the Task Creation & Editing form modal/component
+
+### Phase 3: Backend API Setup (Full-Stack Connection) 🔌
+- [ ] 3.1: Create Server/API route handlers for Tasks (CRUD operations)
+- [ ] 3.2: Connect Frontend components to read tasks from the database (GET)
+- [ ] 3.3: Connect Frontend to create, update, and delete tasks (POST, PUT, DELETE)
+
+### Phase 4: Sorting, Filtering & Advanced Logic 🔍
+- [ ] 4.1: Implement frontend filtering by category/status
+- [ ] 4.2: Implement task sorting logic by upcoming due dates
+
+### Phase 5: Testing (Staff Requirement) 🧪
+- [ ] 5.1: Install and configure Vitest and React Testing Library
+- [ ] 5.2: Write 5 comprehensive unit/integration test cases
+
+### Phase 6: Polish & Extension (Optional) ✨
+- [ ] 6.1: Implement User Authentication (Prisma + Auth library)
+- [ ] 6.2: Refine styling, responsiveness, and code comments for staff review
