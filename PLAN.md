@@ -9,8 +9,8 @@
 ## 🗺️ Project Phases
 
 ### Phase 1: Local Development Architecture 🛠️
-- [ ] 1.1: Complete base folder structure and environment configuration
-- [ ] 1.2: Install and configure Tailwind CSS
+- [x] 1.1: Complete base folder structure and environment configuration
+- [x] 1.2: Install and configure Tailwind CSS
 - [ ] 1.3: Initialize Prisma and define the Task database schema
 - [ ] 1.4: Run the initial database migration to create the Task table
 
