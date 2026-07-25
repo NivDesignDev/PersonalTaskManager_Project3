@@ -106,9 +106,9 @@ model Task {
 - [x] **1.4:** Define the `Task` database schema and execute the first migration
 
 ### Phase 2: Core Frontend UI Components (Current Phase)
-- [ ] **2.1:** Design Dashboard Layout & App Navigation
-- [ ] **2.2:** Build the Task List grid/table view (rendered with clean mock data)
-- [ ] **2.3:** Build the Task Creation & Editing form modal/component
+- [x] **2.1:** Design Dashboard Layout & App Navigation
+- [x] **2.2:** Build the Task List grid/table view (rendered with clean mock data)
+- [x] **2.3:** Build the Task Creation & Editing form modal/component
 
 ### Phase 3: Backend API Setup (Full-Stack Connection)
 - [ ] **3.1:** Create local API route handlers for Tasks (CRUD: Create, Read, Update, Delete)
