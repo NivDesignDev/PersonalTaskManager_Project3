@@ -21,7 +21,7 @@
 
 ### Phase 3: Backend API Setup (Full-Stack Connection) 🔌
 - [x] 3.1: Create Server/API route handlers for Tasks (CRUD operations)
-- [ ] 3.2: Connect Frontend components to read tasks from the database (GET)
+- [x] 3.2: Connect Frontend components to read tasks from the database (GET)
 - [ ] 3.3: Connect Frontend to create, update, and delete tasks (POST, PUT, DELETE)
 
 ### Phase 4: Sorting, Filtering & Advanced Logic 🔍
