@@ -22,11 +22,11 @@
 ### Phase 3: Backend API Setup (Full-Stack Connection) 🔌
 - [x] 3.1: Create Server/API route handlers for Tasks (CRUD operations)
 - [x] 3.2: Connect Frontend components to read tasks from the database (GET)
-- [ ] 3.3: Connect Frontend to create, update, and delete tasks (POST, PUT, DELETE)
+- [x] 3.3: Connect Frontend to create, update, and delete tasks (POST, PUT, DELETE)
 
 ### Phase 4: Sorting, Filtering & Advanced Logic 🔍
-- [ ] 4.1: Implement frontend filtering by category/status
-- [ ] 4.2: Implement task sorting logic by upcoming due dates
+- [x] 4.1: Implement frontend filtering by category/status
+- [x] 4.2: Implement task sorting logic by upcoming due dates
 
 ### Phase 5: Testing (Staff Requirement) 🧪
 - [ ] 5.1: Install and configure Vitest and React Testing Library
