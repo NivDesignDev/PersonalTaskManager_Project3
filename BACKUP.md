@@ -207,11 +207,11 @@ export default {
 ### Phase 3: Backend API Setup (Current Phase)
 - [x] **3.1:** Create local API route handlers for Tasks (Express.js infrastructure setup)
 - [x] **3.2:** Connect Frontend components to read live tasks from the database (GET)
-- [ ] **3.3:** Connect Frontend forms to save, update, and delete tasks dynamically
+- [x] **3.3:** Connect Frontend forms to save, update, and delete tasks dynamically
 
 ### Phase 4: Advanced Sorting & Filtering (Partially Completed)
-- [ ] **4.1:** Implement frontend filtering by category/status (Completed early in Phase 2)
-- [ ] **4.2:** Implement sorting logic by upcoming due dates
+- [x] **4.1:** Implement frontend filtering by category/status (Completed early in Phase 2)
+- [x] **4.2:** Implement sorting logic by upcoming due dates
 
 ### Phase 5: Testing (Staff Requirement)
 - [ ] **5.1:** Install and configure Vitest and React Testing Library

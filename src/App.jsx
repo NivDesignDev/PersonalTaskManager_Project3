@@ -7,26 +7,26 @@ function App() {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDueDate, setTaskDueDate] = useState("");
-
-  // TRACKS IF WE ARE EDITING A TASK (null = Create mode, object = Edit mode)
   const [editingTask, setEditingTask] = useState(null);
 
   // FETCH TASKS LIST ACTION (GET)
   const fetchDatabaseTasks = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/tasks");
+      if (!response.ok) throw new Error("API network fetch failed");
       const data = await response.json();
-      setTasks(data);
+      setTasks(data || []);
     } catch (error) {
       console.error("❌ Failed to communicate with database api:", error);
     }
   };
 
+  // Safe useEffect Hook: Empty dependency bracket guarantees this execution block runs ONCE on boot
   useEffect(() => {
     fetchDatabaseTasks();
-  }, []);
+  }, []); 
 
-  // OPEN MODAL FOR CREATION (CLEARS ENVIRONMENT)
+  // OPEN MODAL FOR CREATION
   const handleOpenCreateModal = () => {
     setEditingTask(null);
     setTaskName("");
@@ -35,13 +35,12 @@ function App() {
     setIsModalOpen(true);
   };
 
-  // OPEN MODAL FOR EDITING (PRE-FILLS INPUT FIELDS)
+  // OPEN MODAL FOR EDITING
   const handleOpenEditModal = (task) => {
     setEditingTask(task);
     setTaskName(task.name);
     setTaskDescription(task.description || "");
     
-    // FIX: Safely extracts just the YYYY-MM-DD portion from the database timestamp for the calendar input
     if (task.dueDate) {
       const rawDate = new Date(task.dueDate);
       const year = rawDate.getFullYear();
@@ -54,15 +53,14 @@ function App() {
     setIsModalOpen(true);
   };
 
-  // UNIFIED DISPATCH HANDLER (Handles both Creation and Database Content Modification Updates)
+  // UNIFIED DISPATCH FORM SUBMISSION (POST & PUT)
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!taskName || !taskDueDate) return;
 
     try {
-      // FIX: Creates a clean date format that ignores browser timezone offsets
       const [year, month, day] = taskDueDate.split('-');
-      const cleanDateObj = new Date(year, month - 1, day, 12, 0, 0); // Sets to noon to prevent day-shifting
+      const cleanDateObj = new Date(year, month - 1, day, 12, 0, 0); 
       const safeIsoDate = cleanDateObj.toISOString();
       
       const isEditMode = editingTask !== null;
@@ -108,19 +106,24 @@ function App() {
     }
   };
 
-  // DELETE TASK SELECTION ACTION (DELETE)
+    // DELETE TASK SELECTION ACTION (DELETE) - Clean Type-Safe Version
   const handleDeleteTask = async (taskId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
         method: "DELETE"
       });
+      
       if (!response.ok) throw new Error("Failed to delete task row.");
-      setTasks(tasks.filter(task => task.id !== taskId));
+      
+      // FIX: Converts IDs to numbers using Number() to ensure type-safe comparison matching
+      setTasks(prevTasks => prevTasks.filter(task => Number(task.id) !== Number(taskId)));
     } catch (error) {
       console.error("❌ Deletion Network Failure:", error);
     }
   };
 
+
+  // Safe Filter pipeline protected against string mutations and split execution failures
   const filteredTasks = (tasks || []).filter((task) => {
     if (activeTab === "completed") return task.isCompleted === true;
     if (activeTab === "today") {
@@ -250,6 +253,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 
