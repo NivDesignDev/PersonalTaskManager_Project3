@@ -10,14 +10,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 1. Create a secure PostgreSQL database connection pool with explicit SSL configurations
+// 1. Create a secure PostgreSQL database connection pool pointing directly to your Neon URL
 const pool = new pg.Pool({ 
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false // <-- This forces your backend to safely trust the Neon cloud certificate parameters
+    rejectUnauthorized: false 
   }
 });
-
 
 // 2. Initialize the Prisma v7 Driver Adapter wrapper
 const adapter = new PrismaPg(pool);
@@ -38,7 +37,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: "healthy", message: "Task Manager Backend is active!" });
 });
 
+// ========================================================
 // ROUTE 1: LIVE API READ ENDPOINT (GET)
+// ========================================================
 app.get('/api/tasks', async (req, res) => {
   try {
     const allTasks = await prisma.task.findMany({
@@ -52,8 +53,9 @@ app.get('/api/tasks', async (req, res) => {
     res.status(500).json({ error: "Failed to read task objects out of the database." });
   }
 });
+
 // ========================================================
-// ROUTE 2: LIVE API CREATE ENDPOINT (POST) - Bulletproof
+// ROUTE 2: LIVE API CREATE ENDPOINT WITH USER LINK (POST)
 // ========================================================
 app.post('/api/tasks', async (req, res) => {
   try {
@@ -63,7 +65,6 @@ app.post('/api/tasks', async (req, res) => {
       return res.status(400).json({ error: "Missing required fields: name and dueDate are mandatory." });
     }
 
-    // SANITIZATION: Forces a clean ISO format string to prevent timestamp parse rejections
     const cleanDate = new Date(dueDate);
     if (isNaN(cleanDate.getTime())) {
       return res.status(400).json({ error: "Invalid due date format received." });
@@ -73,8 +74,9 @@ app.post('/api/tasks', async (req, res) => {
       data: {
         name: name,
         description: description || null,
-        dueDate: cleanDate, // Passes the verified valid date object directly to Prisma
-        isCompleted: false 
+        dueDate: cleanDate, 
+        isCompleted: false,
+        userId: 1 // Maps your tasks straight to our master user row
       }
     });
 
@@ -85,7 +87,9 @@ app.post('/api/tasks', async (req, res) => {
   }
 });
 
+// ========================================================
 // ROUTE 3: TOGGLE TASK COMPLETION STATUS (PUT)
+// ========================================================
 app.put('/api/tasks/:id/toggle', async (req, res) => {
   try {
     const { id } = req.params;
@@ -110,7 +114,9 @@ app.put('/api/tasks/:id/toggle', async (req, res) => {
   }
 });
 
+// ========================================================
 // ROUTE 4: UPDATE TASK CONTENT FIELDS DETAILS (PUT)
+// ========================================================
 app.put('/api/tasks/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -136,7 +142,9 @@ app.put('/api/tasks/:id', async (req, res) => {
   }
 });
 
+// ========================================================
 // ROUTE 5: ERASE A TASK ROW PERMANENTLY (DELETE)
+// ========================================================
 app.delete('/api/tasks/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -152,6 +160,10 @@ app.delete('/api/tasks/:id', async (req, res) => {
   }
 });
 
+// CRUCIAL EXPLICIT SERVICE BINDING
 app.listen(PORT, () => {
   console.log(`🚀 Full-stack server running cleanly on http://localhost:${PORT}`);
 });
+
+
+

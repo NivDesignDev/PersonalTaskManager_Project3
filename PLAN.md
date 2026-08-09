@@ -29,9 +29,9 @@
 - [x] 4.2: Implement task sorting logic by upcoming due dates
 
 ### Phase 5: Testing (Staff Requirement) 🧪
-- [ ] 5.1: Install and configure Vitest and React Testing Library
-- [ ] 5.2: Write 5 comprehensive unit/integration test cases
+- [x] 5.1: Install and configure Vitest and React Testing Library
+- [x] 5.2: Write 5 comprehensive unit/integration test cases
 
 ### Phase 6: Polish & Extension (Optional) ✨
-- [ ] 6.1: Implement User Authentication (Prisma + Auth library)
+- [x] 6.1: Implement User Authentication (Prisma + Auth library)
 - [ ] 6.2: Refine styling, responsiveness, and code comments for staff review

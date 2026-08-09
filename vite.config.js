@@ -6,6 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    strictPort: true, // <-- This forces Vite to fail/clear instead of drifting to 5177!
+    strictPort: true, 
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.js', // Points to our testing rule configurations
   }
 })
+

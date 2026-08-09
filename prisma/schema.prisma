@@ -13,6 +13,12 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+  tasks Task[]
+}
+
 model Task {
   id          Int      @id @default(autoincrement())
   name        String
@@ -20,4 +26,6 @@ model Task {
   dueDate     DateTime
   isCompleted Boolean  @default(false)
   createdAt   DateTime @default(now())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
