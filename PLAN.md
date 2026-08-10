@@ -34,4 +34,4 @@
 
 ### Phase 6: Polish & Extension (Optional) ✨
 - [x] 6.1: Implement User Authentication (Prisma + Auth library)
-- [ ] 6.2: Refine styling, responsiveness, and code comments for staff review
+- [X] 6.2: Refine styling, responsiveness, and code comments for staff review
