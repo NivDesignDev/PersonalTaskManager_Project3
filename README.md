@@ -5,7 +5,8 @@ A resilient full-stack task management workspace engineered with an interactive 
 ---
 
 ## 🎥 Project Technical Walkthrough Video
-👉 **[Click Here to Watch the Live Full-Stack Project Demo Video](PASTE_YOUR_LOOM_LINK_HERE)**
+👉 **[Click Here to Watch the Live Full-Stack Project Demo Video]
+https://www.loom.com/share/98e196728b69453787642d69e4ef5ee9
 
 ---
 
